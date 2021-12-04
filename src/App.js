@@ -18,12 +18,12 @@ function App() {
       <div >
         {/* <Sidebar /> */}
         <Switch>
-          <Route exact path="/">
+          {/* <Route exact path="/">
             <Home />
-          </Route>
-          <Route path="/dashboard">
+          </Route> */}
+          {/* <Route path="/dashboard">
             <Dashboard />
-          </Route>
+          </Route> */}
           {/* <Route path="/user/:userId">
             <User />
           </Route>

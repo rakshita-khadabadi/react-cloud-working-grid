@@ -1,29 +1,100 @@
 import React from "react";
 import "./topbar.css";
-import { NotificationsNone, Language, Settings } from "@material-ui/icons";
+import  {Route, BrowserRouter as Router, Switch,NavLink,Link} from 'react-router-dom';
+import { Navbar, Nav,Container } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Home from '../../pages/home/Home';
+import Dashboard from '../../Dashboard';
+import FirstTimeRegister from '../../pages/Register/FirstTimeRegister';
+
+// import RegistartionForm1 from './RegistrationForm1';
+// import RegistartionForm from './RegistrationForm';
+
+// import Home from './Home';
+// import About from './about';
+
+// import image from './images/roomates.jpg';
+// import Dashboard from './dashboard';
+// import NavbarDashboard from './NavbarDashboard';
+// import Login from './Login';
+
+// import LeaseHolderForm from './LeaseHolder';
+
 
 export default function Topbar() {
   return (
-    <div className="topbar">
-      <div className="topbarWrapper">
-        <div className="topLeft">
-          <span className="logo">lamaadmin</span>
+    <div >
+      <div >
+      <Router>
+      <Switch>
+      <div>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <Link to="/home" class="nav-link"> Find your Rommates </Link>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+            <Link to="/home" class="nav-link"> Home </Link>
+            </li>
+             <li class="nav-item">
+            <Link to="/dashboard" class="nav-link"> Dashboard </Link>
+            </li>
+            <li class="nav-item">
+            <Link to="/register" class="nav-link"> FirstTimeRegister </Link>
+            </li>
+            {/*<li class="nav-item">
+            <Link to="/dashboard" class="nav-link"> Dashboard </Link>
+            </li>
+            <li class="nav-item">
+            <Link to="/navbardashboard" class="nav-link"> Nav Bar Dashboard </Link>
+            </li>
+            <li class="nav-item">
+            <Link to="/login" class="nav-link"> Login </Link>
+            </li>
+            <li class="nav-item">
+            <Link to="/registerfirsttime" class="nav-link"> Registerfirsttime </Link>
+            </li>
+            <li class="nav-item">
+            <Link to="/leaseholder" class="nav-link"> LeaseHolderForm </Link>
+            </li>
+           */}
+          </ul>
         </div>
-        <div className="topRight">
-          <div className="topbarIconContainer">
-            <NotificationsNone />
-            <span className="topIconBadge">2</span>
-          </div>
-          <div className="topbarIconContainer">
-            <Language />
-            <span className="topIconBadge">2</span>
-          </div>
-          <div className="topbarIconContainer">
-            <Settings />
-          </div>
-          <img src="https://images.pexels.com/photos/1526814/pexels-photo-1526814.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" alt="" className="topAvatar" />
-        </div>
+      </nav>
+    
+   
+    <Route path = "/home" component={Home} > <Home/>  </Route>
+    <Route path = "/dashboard" component={Dashboard}  > <Dashboard/> </Route>
+    <Route path = "/register"  > <FirstTimeRegister/> </Route>
+    {/* <Route path = "/leaseholder"  > <LeaseHolderForm/> </Route> */}
+    {/* <Route path = "/about" component ={About} > <About/> </Route>
+    
+    
+    <Route path = "/navbardashboard"  > <NavbarDashboard/> </Route>
+    <Route path = "/login"  > <Login/> </Route>
+    
+    <Route path = "/registerfirsttime"  component={Registerfirsttime}> <Registerfirsttime/> </Route> */}
+    
+    
+
+
+
+
+      </div>
+      </Switch>
+    </Router>
+       
       </div>
     </div>
   );
 }
+
+
+
+
+
+
+
+
