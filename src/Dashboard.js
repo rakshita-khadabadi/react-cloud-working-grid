@@ -2,7 +2,7 @@ import Sidebar from "./components/sidebar/Sidebar";
 import Topbar from "./components/topbar/Topbar";
 import "./App.css";
 import Home from "./pages/home/Home";
-import {useEffect,useState} from 'react';
+import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Switch, Route, useLocation } from "react-router-dom";
 import UserList from "./pages/userList/UserList";
 import User from "./pages/user/User";
@@ -13,14 +13,14 @@ import NewProduct from "./pages/newProduct/NewProduct";
 import Chat from "./pages/Chat/Chat";
 
 function Dashboard() {
-  const {state} = useLocation();
+  const { state } = useLocation();
   const [userId, setUserId] = useState(state.userId)
   const [roleName, setRoleName] = useState(state.roleName)
   const [firstName, setFirstName] = useState(state.firstName)
   const [lastName, setLastName] = useState(state.lastName)
 
   useEffect(() => {
-    
+
     // setUserId(state.userId)
     // setRole(state.role)
 
@@ -33,13 +33,18 @@ function Dashboard() {
     <Router>
       {/* <Topbar /> */}
       <div className="container">
-        <Sidebar />
+        <div className="row">
+          <Sidebar />
+        </div>
+
         <Switch>
           <Route exact path="/">
-            <ProductList firstName= {firstName} lastName= {lastName} />
+            <div className="main-display-position">
+              <ProductList firstName={firstName} lastName={lastName} />
+            </div>
           </Route>
           <Route path="/users">
-            <UserList roleName = {roleName} />
+            <UserList roleName={roleName} />
           </Route>
           <Route path="/user/:userId">
             <User />
@@ -57,9 +62,12 @@ function Dashboard() {
             <NewProduct />
           </Route>
           <Route exact path="/chats">
-            <Chat />
+            <div className="main-display-position">
+              <Chat />
+            </div>
           </Route>
         </Switch>
+
       </div>
     </Router>
   );
