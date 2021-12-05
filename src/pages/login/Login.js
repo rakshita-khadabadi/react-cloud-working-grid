@@ -30,7 +30,9 @@ const Login = (props) => {
                     pathname: '/dashboard',
                     state: {
                         userId: response.data.data.userId,
-                        roleName: response.data.data.role
+                        roleName: response.data.data.role,
+                        firstName: response.data.data.firstName,
+                        lastName: response.data.data.lastName
                     }
                 });
                 //history.push('/dashboard',{role:response.data.data.role});

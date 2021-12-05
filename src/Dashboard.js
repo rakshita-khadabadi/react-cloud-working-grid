@@ -15,6 +15,8 @@ function Dashboard() {
   const {state} = useLocation();
   const [userId, setUserId] = useState(state.userId)
   const [roleName, setRoleName] = useState(state.roleName)
+  const [firstName, setFirstName] = useState(state.firstName)
+  const [lastName, setLastName] = useState(state.lastName)
 
   useEffect(() => {
     
@@ -33,7 +35,7 @@ function Dashboard() {
         <Sidebar />
         <Switch>
           <Route exact path="/">
-            <Home />
+            <ProductList firstName= {firstName} lastName= {lastName} />
           </Route>
           <Route path="/users">
             <UserList roleName = {roleName} />
@@ -45,7 +47,7 @@ function Dashboard() {
             <NewUser />
           </Route>
           <Route path="/products">
-            <ProductList />
+            <Home />
           </Route>
           <Route path="/product/:productId">
             <Product />
