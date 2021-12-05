@@ -6,14 +6,35 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-export default function UserList() {
+export default function UserList(props) {
   const [blogs, setBlogs] = useState(null)
+  const[columns,setColumns] = useState(null)
   let rowData;
   useEffect(() => {
+    console.log(props.roleName,'rolename')
+    if(props.roleName === 'Lease Holder'){
     axios.get('http://34.127.76.90:8080/getAllLeaseHolders')
     .then(response=> {
-      
+      setColumns(columnsforLeaseHolder)
       rowData = response.data.data.leaseHolderList
+      //userRows = rowData
+      console.log(rowData,'response from API')
+      setBlogs(rowData)
+      console.log(setBlogs,'blogs')
+
+      
+    })
+    .catch(error =>{
+      console.log(error,'api error')
+    })
+  }
+  else{
+    console.log('Occupants')
+    setColumns(columnsforOccupants)
+    axios.get('http://34.127.76.90:8080/getAllOccupants')
+    .then(response=> {
+      
+      rowData = response.data.data.occupantList
       //userRows = rowData
       console.log(rowData,'response from API')
       setBlogs(rowData)
@@ -23,38 +44,13 @@ export default function UserList() {
     .catch(error =>{
       console.log(error,'api error')
     })
-  //   fetch('http://34.127.76.90:8080/getAllLeaseHolders')
-  //     .then(res => {
-  //       console.log(res,'response')
-  //       return res.json();
-  //     })
-  //     .then(data => {
-  //       setBlogs(data);
-  //     })
+  }
+
  }, [])
-  //const getData=()=> {
-    // let rowData
-    // let userRows
-    // axios.get('http://34.127.76.90:8080/getAllLeaseHolders')
-    // .then(response=> {
-      
-    //   rowData = response.data.data.leaseHolderList
-    //   userRows = rowData
-    //   console.log(rowData,'response from API',userRows,'User Rows')
-      
-    // })
-    // .catch(error =>{
-    //   console.log(error,'api error')
-    // })
-  //}
-
-
-  //userRows = data.occupantList
-  //const [data, setData] = useState(userRows);
-  //console.log(data,'data', setData, 'dataset')
+ 
   
   
-  const columns = [
+  const columnsforLeaseHolder = [
     {field: "userId",headerName: "Id",width: 100},
     {field: "firstName",headerName: "First Name",width: 180},
     { field: "emailId", headerName: "Email", width: 180 },
@@ -65,8 +61,21 @@ export default function UserList() {
     {field: "furnishingStatus",headerName: "Furnished",width: 180},
     {field: "moveInDate",headerName: "Move In Date",width: 180},
   ];
+  const columnsforOccupants = [
+    {field: "userId",headerName: "Id",width: 100},
+    {field: "firstName",headerName: "First Name",width: 180},
+    { field: "emailId", headerName: "Email", width: 180 },
+    {field: "name",headerName: "Apt Name",width: 180},
+    {field: "rentMinimum",headerName: "rentMinimum",width: 180},
+    {field: "rentMaximum",headerName: "rentMaximum",width: 180},
+    {field: "gender",headerName: "gender",width: 180},
+    {field: "foodPreference",headerName: "foodPreference",width: 180},
+    {field: "degreeLevel",headerName: "degreeLevel",width: 180},
+  ];
+
 
   return (
+    
     <div className="userList">
       {blogs && <DataGrid
         rows={blogs}

@@ -6,6 +6,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from '../../pages/home/Home';
 import Dashboard from '../../Dashboard';
 import FirstTimeRegister from '../../pages/Register/FirstTimeRegister';
+import LeaseHolderForm from '../../pages/Register/LeaseHolder';
+import Occupants from '../../pages/Register/Occupants';
+import Login from '../../pages/login/Login';
 
 // import RegistartionForm1 from './RegistrationForm1';
 // import RegistartionForm from './RegistrationForm';
@@ -18,7 +21,7 @@ import FirstTimeRegister from '../../pages/Register/FirstTimeRegister';
 // import NavbarDashboard from './NavbarDashboard';
 // import Login from './Login';
 
-// import LeaseHolderForm from './LeaseHolder';
+
 
 
 export default function Topbar() {
@@ -44,10 +47,10 @@ export default function Topbar() {
             <li class="nav-item">
             <Link to="/register" class="nav-link"> FirstTimeRegister </Link>
             </li>
-            {/*<li class="nav-item">
-            <Link to="/dashboard" class="nav-link"> Dashboard </Link>
-            </li>
             <li class="nav-item">
+            <Link to="/login" class="nav-link"> Login </Link>
+            </li>
+            {/*<li class="nav-item">
             <Link to="/navbardashboard" class="nav-link"> Nav Bar Dashboard </Link>
             </li>
             <li class="nav-item">
@@ -68,7 +71,9 @@ export default function Topbar() {
     <Route path = "/home" component={Home} > <Home/>  </Route>
     <Route path = "/dashboard" component={Dashboard}  > <Dashboard/> </Route>
     <Route path = "/register"  > <FirstTimeRegister/> </Route>
-    {/* <Route path = "/leaseholder"  > <LeaseHolderForm/> </Route> */}
+    <Route path = "/leaseholder"  > <LeaseHolderForm/> </Route>
+    <Route path = "/occupant"  > <Occupants/> </Route>
+    <Route path = "/login"  > <Login/> </Route>
     {/* <Route path = "/about" component ={About} > <About/> </Route>
     
     

@@ -1,5 +1,6 @@
 import React,{useState} from 'react';
-import Leaseholderheader from './Header/Leaseholderheader';
+import axios from "axios";
+import Occupants from './Header/Occupants';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import { makeStyles } from '@material-ui/core/styles';
@@ -9,9 +10,13 @@ import {
   Typography
 } from '@material-ui/core';
 import Textfield from './FormsUI/Textfield';
-import axios from "axios";
+import Select from './FormsUI/Select';
 import DateTimePicker from './FormsUI/DataTimePicker';
 import Button from './FormsUI/Button';
+import countries from '../../data/countries.json';
+import food from '../../data/food.json';
+import gender from '../../data/gender.json';
+import degree from '../../data/degree.json';
 import { useHistory } from "react-router-dom"
 
 const useStyles = makeStyles((theme) => ({
@@ -27,24 +32,21 @@ const INITIAL_FORM_STATE = {
   emailId: '',
   password: '',
   phoneNumber: '',
-  bedroomCount:'',
-  bathroomCount:'',
-  vacancyCount:'',
-  rentPerOccupant: '',
+  rentMinimum: '',
+  rentMaximum: '',
+  state: '',
+  country: '',
   leaseStartDate: '',
-  leaseEndDate: '',
-  moveInDate: '',
-  distanceFromCampus: '',
-  name: '',
-  address: '',
-  furnishingStatusId: '',
-  rolesId: 2
+  foodPreferenceId: '',
+  rolesId : 3,
+  genderId: '',
+  degreeLevelId: ''
 };
 
 const FORM_VALIDATION = Yup.object().shape({
-    firstName: Yup.string()
+  firstName: Yup.string()
     .required('Required'),
-    lastName: Yup.string()
+  lastName: Yup.string()
     .required('Required'),
     emailId: Yup.string()
     .email('Invalid email.')
@@ -54,33 +56,29 @@ const FORM_VALIDATION = Yup.object().shape({
     .integer()
     .typeError('Please enter a valid phone number')
     .required('Required'),
-    bedroomCount: Yup.number()
+    rentMinimum: Yup.number()
     .required('Required'),
-    bathroomCount: Yup.number()
+    rentMaximum: Yup.number(),
+  state: Yup.string()
     .required('Required'),
-    vacancyCount: Yup.number()
+  country: Yup.string()
     .required('Required'),
-    rentPerOccupant: Yup.number(),
     leaseStartDate: Yup.date()
     .required('Required'),
-    leaseEndDate: Yup.date()
-    .required('Required'),
-    moveInDate: Yup.date()
-    .required('Required'),
-    name: Yup.string().required('Required'),
-    address: Yup.string().required('Required'),
-    distanceFromCampus: Yup.number().required('Required'),
-    furnishingStatusId: Yup.number().required('Required')
+    foodPreferenceId: Yup.date().required('Required'),
+    genderId: Yup.string().required('Required'),
+    degreeLevelId: Yup.number().required('Required')
 });
 
-const LeaseHolderForm = () => {
+const RegistartionForm = () => {
   const classes = useStyles();
+
   const [error,setError] = useState(null)
   let history = useHistory();
 
   const handleformSubmit = (values) =>  {
     console.log(values, 'values in function')
-     axios.post("http://34.127.76.90:8080/signup/leaseHolder",values).then(response => {
+     axios.post("http://34.127.76.90:8080/signup/occupant",values).then(response => {
          console.log(response,'response')
         if(response.data.message === 'success'){
             history.push('/login');
@@ -100,7 +98,7 @@ const LeaseHolderForm = () => {
   return (
     <Grid container>
       <Grid item xs={12}>
-        <Leaseholderheader />
+        <Occupants />
       </Grid>
       <Grid item xs={12}>
         <Container maxWidth="md">
@@ -112,8 +110,8 @@ const LeaseHolderForm = () => {
               }}
               validationSchema={FORM_VALIDATION}
               onSubmit={values => {
+                console.log(values);
                 handleformSubmit(values)
-                console.log(values,'values in return-not need');
               }}
             >
               <Form>
@@ -154,8 +152,6 @@ const LeaseHolderForm = () => {
                     />
                   </Grid>
 
-                  
-
                   <Grid item xs={12}>
                     <Textfield
                       name="phoneNumber"
@@ -163,68 +159,61 @@ const LeaseHolderForm = () => {
                     />
                   </Grid>
 
-                  <Grid item xs={12}>
-                    <Textfield
-                      name="bedroomCount"
-                      label="Bedroom Count"
-                    />
-                  </Grid>
-
-                  <Grid item xs={12}>
-                    <Textfield
-                      name="bathroomCount"
-                      label="bathroom Count"
-                    />
-                  </Grid>
-
-                  <Grid item xs={12}>
-                    <Textfield
-                      name="vacancyCount"
-                      label="vacancy Count "
-                    />
-                  </Grid>
-
                  
                   <Grid item xs={12}>
                     <Textfield
-                      name="rentPerOccupant"
-                      label="rent Per Occupant"
+                      name="rentMinimum"
+                      label="rentMinimum"
                     />
                   </Grid>
 
                   <Grid item xs={12}>
                     <Textfield
-                      name="distanceFromCampus"
-                      label="distance From Campus"
+                      name="rentMaximum"
+                      label="rent Max"
                     />
                   </Grid>
 
                   
 
-                  <Grid item xs={12}>
+                  <Grid item xs={6}>
                     <Textfield
-                      name="name"
-                      label="name"
+                      name="state"
+                      label="State"
+                    />
+                  </Grid>
+
+                  <Grid item xs={6}>
+                    <Select
+                      name="country"
+                      label="Country"
+                      options={countries}
                     />
                   </Grid>
 
                   <Grid item xs={12}>
-                    <Textfield
-                      name="address"
-                      label="address"
+                    <Select
+                      name="foodPreferenceId"
+                      label="food"
+                      options={food}
                     />
                   </Grid>
 
                   <Grid item xs={12}>
-                    <Textfield
-                      name="furnishingStatusId"
-                      label="furnishingStatusId"
+                    <Select
+                      name="genderId"
+                      label="gender"
+                      options={gender}
                     />
                   </Grid>
 
-                  
-
-               
+                  <Grid item xs={12}>
+                    <Select
+                      name="degreeLevelId"
+                      label="degreeLevelId"
+                      options={degree}
+                    />
+                  </Grid>
 
                   
 
@@ -232,20 +221,6 @@ const LeaseHolderForm = () => {
                     <DateTimePicker
                       name="leaseStartDate"
                       label="leaseStartDate"
-                    />
-                  </Grid>
-
-                  <Grid item xs={12}>
-                    <DateTimePicker
-                      name="leaseEndDate"
-                      label="leaseEndDate"
-                    />
-                  </Grid>
-
-                  <Grid item xs={12}>
-                    <DateTimePicker
-                      name="moveInDate"
-                      label="moveInDate"
                     />
                   </Grid>
 
@@ -274,4 +249,4 @@ const LeaseHolderForm = () => {
   );
 };
 
-export default LeaseHolderForm;
+export default RegistartionForm;

@@ -2,7 +2,8 @@ import Sidebar from "./components/sidebar/Sidebar";
 import Topbar from "./components/topbar/Topbar";
 import "./App.css";
 import Home from "./pages/home/Home";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {useEffect,useState} from 'react';
+import { BrowserRouter as Router, Switch, Route, useLocation } from "react-router-dom";
 import UserList from "./pages/userList/UserList";
 import User from "./pages/user/User";
 import NewUser from "./pages/newUser/NewUser";
@@ -11,6 +12,20 @@ import Product from "./pages/product/Product";
 import NewProduct from "./pages/newProduct/NewProduct";
 
 function Dashboard() {
+  const {state} = useLocation();
+  const [userId, setUserId] = useState(state.userId)
+  const [roleName, setRoleName] = useState(state.roleName)
+
+  useEffect(() => {
+    
+    // setUserId(state.userId)
+    // setRole(state.role)
+
+    console.log(state)
+    console.log('userId =' + userId + ' role = ' + roleName)
+
+  }, []);
+
   return (
     <Router>
       {/* <Topbar /> */}
@@ -21,7 +36,7 @@ function Dashboard() {
             <Home />
           </Route>
           <Route path="/users">
-            <UserList />
+            <UserList roleName = {roleName} />
           </Route>
           <Route path="/user/:userId">
             <User />

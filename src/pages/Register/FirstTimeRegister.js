@@ -2,20 +2,20 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Col, Row } from 'react-bootstrap';
-//import { useHistory} from "react-router-dom";
+import { useHistory} from "react-router-dom";
 
 export default function FirstTimeRegister(){
 
-    //let history = useHistory();
+    let history = useHistory();
     const occupantRegister = () =>  {
       console.log('in logout')
-      //history.push('/register');
+      history.push('/occupant');
   
       }
 
       const leaseholderRegister = () =>  {
         console.log('in logout')
-        //history.push('/leaseholder');
+        history.push('/leaseholder');
     
         }
 
