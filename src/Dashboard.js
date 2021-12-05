@@ -63,7 +63,7 @@ function Dashboard() {
           </Route>
           <Route exact path="/chats">
             <div className="main-display-position">
-              <Chat />
+              <Chat userId = {userId} />
             </div>
           </Route>
         </Switch>
