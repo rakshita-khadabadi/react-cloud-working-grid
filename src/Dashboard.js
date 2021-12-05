@@ -10,6 +10,7 @@ import NewUser from "./pages/newUser/NewUser";
 import ProductList from "./pages/productList/ProductList";
 import Product from "./pages/product/Product";
 import NewProduct from "./pages/newProduct/NewProduct";
+import Chat from "./pages/Chat/Chat";
 
 function Dashboard() {
   const {state} = useLocation();
@@ -54,6 +55,9 @@ function Dashboard() {
           </Route>
           <Route path="/newproduct">
             <NewProduct />
+          </Route>
+          <Route exact path="/chats">
+            <Chat />
           </Route>
         </Switch>
       </div>
