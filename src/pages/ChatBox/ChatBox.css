@@ -1,0 +1,22 @@
+/* .chatBox-position {
+     background-color: lightcoral; 
+} */
+
+.chat-sender-position {
+    /* float:left; */
+    /* display: block; */
+    width: 100%;
+    text-align: right;
+}
+  
+.chat-receiver-position {
+    /* float:right;
+    display:block; */
+    width: 100%;
+    text-align: left;
+}
+
+.chat-title-design {
+    display: block;
+    width: 100%;
+}
