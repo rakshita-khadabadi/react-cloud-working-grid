@@ -88,7 +88,7 @@ const LeaseHolderForm = () => {
 
   const handleformSubmit = (values) =>  {
     console.log(values, 'values in function')
-     axios.post("http://35.230.33.4:8080/signup/leaseHolder",values).then(response => {
+     axios.post("http://35.233.168.225:8080/signup/leaseHolder",values).then(response => {
          console.log(response,'response')
         if(response.data.message === 'success'){
             history.push('/login');

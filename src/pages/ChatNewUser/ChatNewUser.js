@@ -15,7 +15,7 @@ function ChatNewUser(props) {
 
     useEffect(() => {
 
-        const chatUrl = 'http://35.230.33.4:8080/chats/userId/' + userId
+        const chatUrl = 'http://35.233.168.225:8080/chats/userId/' + userId
         console.log('Calling Chat API 2 -> ' + chatUrl)
 
         axios.get(chatUrl).then(res => {
