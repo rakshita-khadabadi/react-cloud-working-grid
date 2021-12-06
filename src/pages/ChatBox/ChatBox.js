@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react'
 import "./ChatBox.css"; 
 import { io } from 'socket.io-client'
 
-let ip_address = '34.127.76.90';
+// let ip_address = '34.127.76.90';    // VM deployed IP
+let ip_address = '34.127.33.152';
 let socket_port = '9000';
 let socket = io(ip_address + ':' + socket_port);
 

@@ -14,7 +14,7 @@ export default function UserList(props) {
     console.log(props.roleName,'rolename')
     if(props.roleName === 'Occupant'){
       console.log('inside if block for Occupant')
-    axios.get('http://34.127.76.90:8080/getAllLeaseHolders')
+    axios.get('http://35.230.33.4:8080/getAllLeaseHolders')
     .then(response=> {
       setColumns(columnsforLeaseHolder)
       rowData = response.data.data.leaseHolderList
@@ -33,7 +33,7 @@ export default function UserList(props) {
     console.log('Lease Holder')
     console.log('inside else block for Lease Holder')
     setColumns(columnsforOccupants)
-    axios.get('http://34.127.76.90:8080/getAllOccupants')
+    axios.get('http://35.230.33.4:8080/getAllOccupants')
     .then(response=> {
       
       rowData = response.data.data.occupantList

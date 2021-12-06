@@ -47,10 +47,10 @@ export default function Sidebar() {
         <div className="sidebarMenu">
           <h3 className="sidebarTitle">Notifications</h3>
           <ul className="sidebarList">
-            <li className="sidebarListItem">
+            {/* <li className="sidebarListItem">
               <MailOutline className="sidebarIcon" />
               Mail
-            </li>
+            </li> */}
             <Link to="/home" className="link">
             <li className="sidebarListItem">
               <TrendingUp className="sidebarIcon" />

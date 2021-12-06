@@ -17,7 +17,7 @@ const Login = (props) => {
         setError(null)
         setLoading(true)
         console.log(email,password, 'values')
-        axios.post("http://34.127.76.90:8080/user/login",{
+        axios.post("http://35.230.33.4:8080/user/login",{
             email:email,
             password:password
         }).then(response => {
