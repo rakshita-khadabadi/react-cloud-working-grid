@@ -2,14 +2,18 @@ import "./userList.css";
 import { DataGrid } from "@material-ui/data-grid";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 export default function UserList(props) {
+  const [userId, setUserId] = useState(props.userId)
   const [blogs, setBlogs] = useState(null)
   const[columns,setColumns] = useState(null)
+  let history = useHistory();
   let rowData;
   useEffect(() => {
     console.log(props.roleName,'rolename')
-    if(props.roleName === 'Lease Holder'){
+    if(props.roleName === 'Occupants'){
+      console.log('inside if block for Occupants')
     axios.get('http://34.127.76.90:8080/getAllLeaseHolders')
     .then(response=> {
       setColumns(columnsforLeaseHolder)
@@ -26,7 +30,8 @@ export default function UserList(props) {
     })
   }
   else{
-    console.log('Occupants')
+    console.log('Lease Holder')
+    console.log('inside else block for Lease Holder')
     setColumns(columnsforOccupants)
     axios.get('http://34.127.76.90:8080/getAllOccupants')
     .then(response=> {
@@ -45,6 +50,24 @@ export default function UserList(props) {
 
  }, [])
  
+ function openNewChat(record) {
+  console.log(record)
+  history.push({
+    pathname: '/chats/new',
+    newChatObj: {
+        receiverId: record.userId,
+        firstName: record.firstName,
+        lastName: record.lastName,
+        chatMessages: [{
+          id: 0,
+          senderId: userId,
+          receiverId: record.userId,
+          message: 'Hi',
+          messageTimestamp: '2021-11-19T17:39:19.000+00:00'
+        }]
+    }
+});
+}
   
   
   const columnsforLeaseHolder = [
@@ -63,7 +86,15 @@ export default function UserList(props) {
     {field: "leaseStartDate",headerName: "Lease Start Date",width: 180},
     {field: "leaseEndDate",headerName: "Lease End Date",width: 180},
     {field: "moveInDate",headerName: "Move In Date",width: 180},
-  
+    {
+      field: "chat", headerName: "Chat", width: 180, renderCell: (params) => {
+        return (
+          <>
+              <button className="btn btn-success" onClick= {() => openNewChat(params.row)} >Chat</button>
+          </>
+        )
+      }
+    }
     
   ];
   const columnsforOccupants = [
@@ -79,7 +110,15 @@ export default function UserList(props) {
     {field: "gender",headerName: "gender",width: 180},
     {field: "foodPreference",headerName: "foodPreference",width: 180},
     {field: "degreeLevel",headerName: "degreeLevel",width: 180},
-
+    {
+      field: "chat", headerName: "Chat", width: 180, renderCell: (params) => {
+        return (
+          <>
+              <button className="btn btn-success" onClick= {() => openNewChat(params.row)} >Chat</button>
+          </>
+        )
+      }
+    }
    
   ];
 

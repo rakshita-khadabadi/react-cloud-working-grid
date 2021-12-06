@@ -36,8 +36,12 @@ export default function Sidebar() {
                 Users
               </li>
             </Link>
-           
-            
+            <Link to="/chats" className="link">
+              <li className="sidebarListItem">
+                <PermIdentity className="sidebarIcon" />
+                Chats
+              </li>
+            </Link>
           </ul>
         </div>
         <div className="sidebarMenu">

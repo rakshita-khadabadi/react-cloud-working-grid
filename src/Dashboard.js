@@ -10,6 +10,8 @@ import NewUser from "./pages/newUser/NewUser";
 import ProductList from "./pages/productList/ProductList";
 import Product from "./pages/product/Product";
 import NewProduct from "./pages/newProduct/NewProduct";
+import Chat from "./pages/Chat/Chat";
+import ChatNewUser from "./pages/ChatNewUser/ChatNewUser";
 
 
 function Dashboard() {
@@ -38,8 +40,18 @@ function Dashboard() {
           <Route exact path="/">
           <ProductList firstName={firstName} lastName={lastName}/>
           </Route>
+          <Route exact path="/chats">
+            <div className="main-display-position">
+              <Chat userId = {userId} />
+            </div>
+          </Route>
+          <Route exact path="/chats/new">
+            <div className="main-display-position">
+              <ChatNewUser userId = {userId}/>
+            </div>
+          </Route>
           <Route path="/users">
-            <UserList roleName = {roleName} />
+            <UserList roleName = {roleName} userId = {userId} />
           </Route>
           <Route path="/user/:userId">
             <User />
