@@ -88,8 +88,9 @@ function ChatBox(props) {
         <div>
             <div>
                 <div>
-                    {props.receiverChatBoxData.firstName} {props.receiverChatBoxData.lastName}
+                    <strong>{props.receiverChatBoxData.firstName} {props.receiverChatBoxData.lastName}</strong>
                 </div>
+                <br/>
                 <div>
                     {chatMessageList && chatMessageList.map(chat => {
                         return (
@@ -101,7 +102,7 @@ function ChatBox(props) {
                     )}
                 </div>
                 
-                <div>
+                <div className="row">
                     <input onChange={readNewChatMessage} value={newChatMessage} type="text"></input>
                     <button className="btn btn-primary" onClick = {addNewChatToList}>Send</button>
                 </div>

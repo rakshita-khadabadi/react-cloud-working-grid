@@ -43,9 +43,9 @@ function Chat(props) {
     }
 
     return (
-        <div>
-            <div className="row">
-                <div className="col-lg-4 ac">
+        <div >
+            <div className="test">
+                <div className="ac">
 
                     Chat List
 
@@ -55,13 +55,13 @@ function Chat(props) {
                             // {/* // <div> */}
                             // {/* // <button key = {receiver.receiverId} onClick = {openChatBox(receiver)}>  // This line is an issue */}
                             // {/* // https://stackoverflow.com/questions/59304283/error-too-many-re-renders-react-limits-the-number-of-renders-to-prevent-an-in?rq=1 */}
-                            <button className="chat-title-design" key={receiver.receiverId} onClick={() => openChatBox(receiver)}> {receiver.firstName} {receiver.lastName}</button>
+                            <button className="chat-title-design btn btn-success" key={receiver.receiverId} onClick={() => openChatBox(receiver)}> {receiver.firstName} {receiver.lastName}</button>
                         )
                     })}
 
                 </div>
 
-                <div className="col-lg-4 bc">
+                <div>
                     {showChatBox && <ChatBox receiverChatBoxData={receiverChatBoxData} userId={userId} />}
                     {/* {<ChatBox receiverChatBoxData={receiverChatBoxData} userId={userId} />} */}
                 </div>

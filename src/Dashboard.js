@@ -20,9 +20,11 @@ function Dashboard() {
   const [roleName, setRoleName] = useState(state.roleName)
   const [firstName, setFirstName] = useState(state.firstName)
   const [lastName, setLastName] = useState(state.lastName)
+  const [addContainer, setAddContainer] = useState('container')
+  const [url, setUrl] = useState(window.location.href)
 
   useEffect(() => {
-    
+    // console.log('Page redirecting to -> '+ window.location.href)
     // setUserId(state.userId)
     // setRole(state.role)
 
@@ -31,11 +33,19 @@ function Dashboard() {
 
   }, []);
 
+  useEffect(() => {
+    console.log('Page redirecting to -> '+ window.location.href)
+  })
+
   return (
     <Router>
-      {/* <Topbar /> */}
-      <div className="container">
-        <Sidebar />
+      {/* <Topbar /> className="container"*/}
+      <div className="row">
+        <div className="col-sm-3">
+          <Sidebar />
+        </div>
+        {/* {window.location.href.includes('chats') ? <div className="col-sm-9">: <div className="col-sm-9 container">} */}
+        <div className={"col-sm-9 "+addContainer}>
         <Switch>
           <Route exact path="/">
           <ProductList firstName={firstName} lastName={lastName}/>
@@ -52,7 +62,7 @@ function Dashboard() {
           </Route>
           <Route path="/users">
             <UserList roleName = {roleName} userId = {userId} />
-          </Route>
+          </Route>     
           <Route path="/user/:userId">
             <User />
           </Route>
@@ -72,6 +82,8 @@ function Dashboard() {
             <Home />
           </Route>
         </Switch>
+        </div>
+        
       </div>
     </Router>
   );

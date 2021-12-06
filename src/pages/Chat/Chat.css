@@ -1,12 +1,21 @@
 .ac {
-    background-color: yellow;
+    /* background-color: yellow; */
+    width: 200px;
 }
 
 .bc {
-    background-color: lightgreen
+    /* background-color: lightgreen; */
+    width: 100px;
 }
 
 .chat-title-design {
     display: block;
     width: 100%;
+}
+
+
+.test {
+    flex: 2;
+    /* display: block !important; */
+    /* flex-grow: 1; */
 }

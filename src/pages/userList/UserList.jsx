@@ -12,8 +12,8 @@ export default function UserList(props) {
   let rowData;
   useEffect(() => {
     console.log(props.roleName,'rolename')
-    if(props.roleName === 'Occupants'){
-      console.log('inside if block for Occupants')
+    if(props.roleName === 'Occupant'){
+      console.log('inside if block for Occupant')
     axios.get('http://34.127.76.90:8080/getAllLeaseHolders')
     .then(response=> {
       setColumns(columnsforLeaseHolder)
