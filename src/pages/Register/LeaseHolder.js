@@ -13,6 +13,8 @@ import axios from "axios";
 import DateTimePicker from './FormsUI/DataTimePicker';
 import Button from './FormsUI/Button';
 import { useHistory } from "react-router-dom"
+import furnishingStatus from '../../data/furnishingStatus.json';
+import Select from './FormsUI/Select';
 
 const useStyles = makeStyles((theme) => ({
   formWrapper: {
@@ -78,6 +80,11 @@ const LeaseHolderForm = () => {
   const [error,setError] = useState(null)
   let history = useHistory();
 
+  const cancelForm = ()=> {
+    console.log('form cancel')
+    history.push('/register');
+  }
+
   const handleformSubmit = (values) =>  {
     console.log(values, 'values in function')
      axios.post("http://34.127.76.90:8080/signup/leaseHolder",values).then(response => {
@@ -95,6 +102,7 @@ const LeaseHolderForm = () => {
          setError('Enter the details');
 
      })
+     
 }
 
   return (
@@ -115,6 +123,7 @@ const LeaseHolderForm = () => {
                 handleformSubmit(values)
                 console.log(values,'values in return-not need');
               }}
+              
             >
               <Form>
 
@@ -159,7 +168,7 @@ const LeaseHolderForm = () => {
                   <Grid item xs={12}>
                     <Textfield
                       name="phoneNumber"
-                      label="Phone"
+                      label="Phone Number"
                     />
                   </Grid>
 
@@ -173,14 +182,14 @@ const LeaseHolderForm = () => {
                   <Grid item xs={12}>
                     <Textfield
                       name="bathroomCount"
-                      label="bathroom Count"
+                      label="Bathroom Count"
                     />
                   </Grid>
 
                   <Grid item xs={12}>
                     <Textfield
                       name="vacancyCount"
-                      label="vacancy Count "
+                      label="Total no. of Vacancies "
                     />
                   </Grid>
 
@@ -188,14 +197,14 @@ const LeaseHolderForm = () => {
                   <Grid item xs={12}>
                     <Textfield
                       name="rentPerOccupant"
-                      label="rent Per Occupant"
+                      label="Rent per Occupant"
                     />
                   </Grid>
 
                   <Grid item xs={12}>
                     <Textfield
                       name="distanceFromCampus"
-                      label="distance From Campus"
+                      label="Distance from Campus"
                     />
                   </Grid>
 
@@ -204,21 +213,23 @@ const LeaseHolderForm = () => {
                   <Grid item xs={12}>
                     <Textfield
                       name="name"
-                      label="name"
+                      label="Building/Community Name"
                     />
                   </Grid>
 
                   <Grid item xs={12}>
                     <Textfield
                       name="address"
-                      label="address"
+                      label="Building/Community Address"
                     />
                   </Grid>
 
+                  
                   <Grid item xs={12}>
-                    <Textfield
+                    <Select
                       name="furnishingStatusId"
-                      label="furnishingStatusId"
+                      label="Furnishing Status"
+                      options={furnishingStatus}
                     />
                   </Grid>
 
@@ -231,34 +242,33 @@ const LeaseHolderForm = () => {
                   <Grid item xs={12}>
                     <DateTimePicker
                       name="leaseStartDate"
-                      label="leaseStartDate"
+                      label="Lease Start Date"
                     />
                   </Grid>
 
                   <Grid item xs={12}>
                     <DateTimePicker
                       name="leaseEndDate"
-                      label="leaseEndDate"
+                      label="Lease End Date"
                     />
                   </Grid>
 
                   <Grid item xs={12}>
                     <DateTimePicker
                       name="moveInDate"
-                      label="moveInDate"
+                      label="Move In Date"
                     />
                   </Grid>
 
-                 
-
-               
-
-                 
-
-                  <Grid item xs={12}>
+                 <Grid item xs={6}>
                     <Button>
                       Submit Form
                     </Button>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <button  onClick = {cancelForm}>
+                     Cancel
+                    </button>
                   </Grid>
 
 

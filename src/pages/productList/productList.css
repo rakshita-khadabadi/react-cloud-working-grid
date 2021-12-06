@@ -29,3 +29,10 @@
     color: red;
     cursor: pointer;
 }
+
+.title{
+    padding: 165px;
+    font-size: 55px;
+    font-family: sans-serif;
+    text-align: center;
+}

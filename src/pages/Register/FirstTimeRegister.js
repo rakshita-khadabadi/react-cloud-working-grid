@@ -1,7 +1,7 @@
 
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container, Col, Row } from 'react-bootstrap';
+import { Container, Col, Row, Button } from 'react-bootstrap';
 import { useHistory} from "react-router-dom";
 
 export default function FirstTimeRegister(){
@@ -23,10 +23,11 @@ export default function FirstTimeRegister(){
         
         <div>
             <br/>
+            <div>
             <Container>
                 <Row>
                     <Col lg={12}>
-                        <p>Who do you want to register as?</p>
+                        <p>Click on who do you want to register as?</p>
                     </Col>
                 </Row>
             </Container>
@@ -34,10 +35,11 @@ export default function FirstTimeRegister(){
                 <Row>
                     <Col lg={8}>
                         <div>
-                        <input type="button"
+                        <Button variant="primary" onClick={occupantRegister}>Occupant</Button>
+                        {/* <input type="button"
                          value="Occupant"
                         onClick={occupantRegister}
-        />
+        /> */}
                         </div>
                     </Col>
                 </Row>
@@ -47,14 +49,16 @@ export default function FirstTimeRegister(){
                 <Row>
                     <Col lg={8}>
                         <div>
-                        <input type="button"
+                        <Button variant="primary" onClick={leaseholderRegister}>Leaseholder</Button>
+                        {/* <input type="button"
                          value="Leaseholder"
                         onClick={leaseholderRegister}
-        />
+        /> */}
                         </div>
                     </Col>
                 </Row>
             </Container>
+            </div>
         </div>
     );
 }

@@ -24,14 +24,7 @@ export default function Sidebar() {
               Home
             </li>
             </Link>
-            <li className="sidebarListItem">
-              <Timeline className="sidebarIcon" />
-              Analytics
-            </li>
-            <li className="sidebarListItem">
-              <TrendingUp className="sidebarIcon" />
-              Sales
-            </li>
+           
           </ul>
         </div>
         <div className="sidebarMenu">
@@ -43,12 +36,7 @@ export default function Sidebar() {
                 Users
               </li>
             </Link>
-            <Link to="/products" className="link">
-              <li className="sidebarListItem">
-                <Storefront className="sidebarIcon" />
-                Products
-              </li>
-            </Link>
+           
             
           </ul>
         </div>
@@ -59,6 +47,12 @@ export default function Sidebar() {
               <MailOutline className="sidebarIcon" />
               Mail
             </li>
+            <Link to="/home" className="link">
+            <li className="sidebarListItem">
+              <TrendingUp className="sidebarIcon" />
+              Logout
+            </li>
+            </Link>
            
           </ul>
         </div>

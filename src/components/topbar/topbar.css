@@ -55,3 +55,14 @@
     border-radius: 50%;
     cursor: pointer;
 }
+
+.bglight{
+  background: #a5a195;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: antiquewhite !important;
+}
+.nav-link{
+  color:antiquewhite !important;
+}

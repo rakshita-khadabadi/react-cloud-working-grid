@@ -76,6 +76,11 @@ const RegistartionForm = () => {
   const [error,setError] = useState(null)
   let history = useHistory();
 
+  const cancelForm = ()=> {
+    console.log('form cancel')
+    history.push('/register');
+  }
+
   const handleformSubmit = (values) =>  {
     console.log(values, 'values in function')
      axios.post("http://34.127.76.90:8080/signup/occupant",values).then(response => {
@@ -120,7 +125,7 @@ const RegistartionForm = () => {
 
                   <Grid item xs={12}>
                     <Typography>
-                      Your details
+                      Please fill in your details below:
                     </Typography>
                   </Grid>
 
@@ -163,14 +168,14 @@ const RegistartionForm = () => {
                   <Grid item xs={12}>
                     <Textfield
                       name="rentMinimum"
-                      label="rentMinimum"
+                      label="Rent Minimum"
                     />
                   </Grid>
 
                   <Grid item xs={12}>
                     <Textfield
                       name="rentMaximum"
-                      label="rent Max"
+                      label="Rent Max"
                     />
                   </Grid>
 
@@ -194,7 +199,7 @@ const RegistartionForm = () => {
                   <Grid item xs={12}>
                     <Select
                       name="foodPreferenceId"
-                      label="food"
+                      label="Food"
                       options={food}
                     />
                   </Grid>
@@ -202,7 +207,7 @@ const RegistartionForm = () => {
                   <Grid item xs={12}>
                     <Select
                       name="genderId"
-                      label="gender"
+                      label="Gender"
                       options={gender}
                     />
                   </Grid>
@@ -210,7 +215,7 @@ const RegistartionForm = () => {
                   <Grid item xs={12}>
                     <Select
                       name="degreeLevelId"
-                      label="degreeLevelId"
+                      label="Degree Level"
                       options={degree}
                     />
                   </Grid>
@@ -220,7 +225,7 @@ const RegistartionForm = () => {
                   <Grid item xs={12}>
                     <DateTimePicker
                       name="leaseStartDate"
-                      label="leaseStartDate"
+                      label="Lease Start Date"
                     />
                   </Grid>
 
@@ -230,11 +235,18 @@ const RegistartionForm = () => {
 
                  
 
-                  <Grid item xs={12}>
+                  <Grid item xs={6}>
                     <Button>
                       Submit Form
                     </Button>
                   </Grid>
+
+                  <Grid item xs={6}>
+                    <button  onClick = {cancelForm}>
+                     Cancel
+                    </button>
+                  </Grid>
+
 
 
                 </Grid>

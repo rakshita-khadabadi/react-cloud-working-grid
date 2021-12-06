@@ -31,8 +31,8 @@ export default function Topbar() {
       <Router>
       <Switch>
       <div>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <Link to="/home" class="nav-link"> Find your Rommates </Link>
+      <nav class="navbar navbar-expand-lg navbar-light bglight">
+      <Link to="/" class="nav-link"> Find your Rommates </Link>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -41,11 +41,9 @@ export default function Topbar() {
             <li class="nav-item active">
             <Link to="/home" class="nav-link"> Home </Link>
             </li>
-             <li class="nav-item">
-            <Link to="/dashboard" class="nav-link"> Dashboard </Link>
-            </li>
+           
             <li class="nav-item">
-            <Link to="/register" class="nav-link"> FirstTimeRegister </Link>
+            <Link to="/register" class="nav-link"> Register </Link>
             </li>
             <li class="nav-item">
             <Link to="/login" class="nav-link"> Login </Link>
@@ -67,7 +65,7 @@ export default function Topbar() {
         </div>
       </nav>
     
-   
+    <Route path = "/" exact component={Home} > <Home/>  </Route>
     <Route path = "/home" component={Home} > <Home/>  </Route>
     <Route path = "/dashboard" component={Dashboard}  > <Dashboard/> </Route>
     <Route path = "/register"  > <FirstTimeRegister/> </Route>

@@ -11,10 +11,13 @@ import ProductList from "./pages/productList/ProductList";
 import Product from "./pages/product/Product";
 import NewProduct from "./pages/newProduct/NewProduct";
 
+
 function Dashboard() {
   const {state} = useLocation();
   const [userId, setUserId] = useState(state.userId)
   const [roleName, setRoleName] = useState(state.roleName)
+  const [firstName, setFirstName] = useState(state.firstName)
+  const [lastName, setLastName] = useState(state.lastName)
 
   useEffect(() => {
     
@@ -33,7 +36,7 @@ function Dashboard() {
         <Sidebar />
         <Switch>
           <Route exact path="/">
-            <Home />
+          <ProductList firstName={firstName} lastName={lastName}/>
           </Route>
           <Route path="/users">
             <UserList roleName = {roleName} />
@@ -45,13 +48,16 @@ function Dashboard() {
             <NewUser />
           </Route>
           <Route path="/products">
-            <ProductList />
+            <ProductList firstName={firstName} lastName={lastName}/>
           </Route>
           <Route path="/product/:productId">
             <Product />
           </Route>
           <Route path="/newproduct">
             <NewProduct />
+          </Route>
+          <Route path="/home">
+            <Home />
           </Route>
         </Switch>
       </div>

@@ -30,7 +30,10 @@ const Login = (props) => {
                     pathname: '/dashboard',
                     state: {
                         userId: response.data.data.userId,
-                        roleName: response.data.data.role
+                        roleName: response.data.data.role,
+                        firstName:response.data.data.firstName,
+                        lastName:response.data.data.lastName,
+
                     }
                 });
                 //history.push('/dashboard',{role:response.data.data.role});
@@ -44,7 +47,7 @@ const Login = (props) => {
         }).catch(e => {
             setLoading(false)
             // if(e.response.status === 500){
-                 setError('Enter the details');
+                 setError('Enter the right and required details');
             // }
             console.error(e, 'error')
 
@@ -55,11 +58,14 @@ const Login = (props) => {
     }
     
         return (
+
             <div>
+            <div className="login">
+                
                  <br/><br/>
-                <div>
+                <div >
                     Email<br/>
-                    <input type = "text"
+                    <input type = "text" className="inputbox"
                     value = {email}
                     onChange={e => setUsername(e.target.value)}
                     />
@@ -67,20 +73,22 @@ const Login = (props) => {
 
                 <div>
                     Password<br/>
-                    <input type = "password"
+                    <input type = "password" className="inputbox"
                     value = {password}
                     onChange={e => setPassword(e.target.value)}
                     />
                 </div>
                 {error && <div className="error">{error}</div>}
+                <br/>
 
                 <div>
-                    <input type = "button" value = {loading?"Loading...":"Login"}
+                    <input className = "loginbutton" type = "button" value = {loading?"Loading...":"Login"}
                     disabled = {loading}
                     onClick = {handleLogin}
                     />
                 </div>
 
+            </div>
             </div>
         )
     
