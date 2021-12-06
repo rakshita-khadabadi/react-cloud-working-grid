@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloud-react-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cloud-react-app
+  template:
+    metadata:
+      labels:
+        app: cloud-react-app
+    spec:
+      containers:
+        - name: cloud-react-app
+          image: amlanalok/cse-5333-react-final
+          ports:
+            - containerPort: 3000
+---
+# Code to create an External Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: cloud-react-service
+spec:
+  ports:
+    - name: 3000-3000
+      protocol: TCP
+      port: 3000            # This is the service port
+      targetPort: 3000      # This is the port of the pod
+      # nodePort: 32000
+  selector:
+    app: cloud-react-app
+  type: LoadBalancer
