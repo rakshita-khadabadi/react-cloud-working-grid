@@ -21,6 +21,12 @@ function ChatBox(props) {
             let lastChat = chatMessageList[numOfChats-1];
             console.log(lastChat)
             let previousId = lastChat.id
+            // if (lastChat.id == undefined){
+            //     previousId = 0
+            // }
+            // else{
+            //     previousId = lastChat.id
+            // }
             console.log('previousId =', previousId)
             let newDisplayChatObj = {
                 id: previousId+1,
@@ -58,6 +64,12 @@ function ChatBox(props) {
         let lastChat = chatMessageList[numOfChats-1];
         console.log(lastChat)
         let previousId = lastChat.id
+        // if (lastChat.id == undefined){
+        //     previousId = 0
+        // }
+        // else{
+        //     previousId = lastChat.id
+        // }
         console.log('previousId =', previousId)
         let newChatObj = {
             id: previousId+1,

@@ -2,80 +2,115 @@ import "./userList.css";
 import { DataGrid } from "@material-ui/data-grid";
 import { DeleteOutline } from "@material-ui/icons";
 import { userRows } from "../../dummyData";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
 export default function UserList(props) {
+  const [userId, setUserId] = useState(props.userId)
   const [blogs, setBlogs] = useState(null)
-  const[columns,setColumns] = useState(null)
+  const [columns, setColumns] = useState(null)
+  let history = useHistory();
   let rowData;
   useEffect(() => {
-    console.log(props.roleName,'rolename')
-    if(props.roleName === 'Lease Holder'){
-    axios.get('http://34.127.76.90:8080/getAllLeaseHolders')
-    .then(response=> {
-      setColumns(columnsforLeaseHolder)
-      rowData = response.data.data.leaseHolderList
-      //userRows = rowData
-      console.log(rowData,'response from API')
-      setBlogs(rowData)
-      console.log(setBlogs,'blogs')
+    console.log(props.roleName, 'rolename')
+    if (props.roleName === 'Occupants') {
+      
+      console.log('inside if block for Occupants')
+      axios.get('http://34.127.76.90:8080/getAllLeaseHolders')
+        .then(response => {
+          setColumns(columnsforLeaseHolder)
+          rowData = response.data.data.leaseHolderList
+          //userRows = rowData
+          console.log(rowData, 'response from API')
+          setBlogs(rowData)
+          console.log(setBlogs, 'blogs')
 
-      
-    })
-    .catch(error =>{
-      console.log(error,'api error')
-    })
-  }
-  else{
-    console.log('Occupants')
-    setColumns(columnsforOccupants)
-    axios.get('http://34.127.76.90:8080/getAllOccupants')
-    .then(response=> {
-      
-      rowData = response.data.data.occupantList
-      //userRows = rowData
-      console.log(rowData,'response from API')
-      setBlogs(rowData)
-      console.log(setBlogs,'blogs')
-      
-    })
-    .catch(error =>{
-      console.log(error,'api error')
-    })
+
+        })
+        .catch(error => {
+          console.log(error, 'api error')
+        })
+    }
+    else {
+      console.log('Lease Holder')
+      console.log('inside else block for Lease Holder')
+      setColumns(columnsforOccupants)
+      axios.get('http://34.127.76.90:8080/getAllOccupants')
+        .then(response => {
+
+          rowData = response.data.data.occupantList
+          //userRows = rowData
+          console.log(rowData, 'response from API')
+          setBlogs(rowData)
+          console.log(setBlogs, 'blogs')
+
+        })
+        .catch(error => {
+          console.log(error, 'api error')
+        })
+    }
+
+  }, [])
+
+  function openNewChat(record) {
+    console.log(record)
+    history.push({
+      pathname: '/chats/new',
+      newChatObj: {
+          receiverId: record.userId,
+          firstName: record.firstName,
+          lastName: record.lastName,
+          chatMessages: [{
+            id: 0,
+            senderId: userId,
+            receiverId: record.userId,
+            message: 'Hi',
+            messageTimestamp: '2021-11-19T17:39:19.000+00:00'
+          }]
+      }
+  });
   }
 
- }, [])
- 
-  
-  
+
   const columnsforLeaseHolder = [
-    {field: "userId",headerName: "Id",width: 100},
-    {field: "firstName",headerName: "First Name",width: 180},
+    { field: "userId", headerName: "Id", width: 100 },
+    { field: "firstName", headerName: "First Name", width: 180 },
     { field: "emailId", headerName: "Email", width: 180 },
-    {field: "name",headerName: "Apt Name",width: 180},
-    {field: "rentPerOccupant",headerName: "Rent",width: 180},
-    {field: "bathroomCount",headerName: "Bath Count",width: 180},
-    {field: "bedroomCount",headerName: "Bed Count",width: 180},
-    {field: "furnishingStatus",headerName: "Furnished",width: 180},
-    {field: "moveInDate",headerName: "Move In Date",width: 180},
+    { field: "name", headerName: "Apt Name", width: 180 },
+    { field: "rentPerOccupant", headerName: "Rent", width: 180 },
+    { field: "bathroomCount", headerName: "Bath Count", width: 180 },
+    { field: "bedroomCount", headerName: "Bed Count", width: 180 },
+    { field: "furnishingStatus", headerName: "Furnished", width: 180 },
+    { field: "moveInDate", headerName: "Move In Date", width: 180 },
+    { field: "chat", headerName: "Chat", width: 180 }
   ];
   const columnsforOccupants = [
-    {field: "userId",headerName: "Id",width: 100},
-    {field: "firstName",headerName: "First Name",width: 180},
+    { field: "userId", headerName: "Id", width: 100 },
+    { field: "firstName", headerName: "First Name", width: 180 },
     { field: "emailId", headerName: "Email", width: 180 },
-    {field: "name",headerName: "Apt Name",width: 180},
-    {field: "rentMinimum",headerName: "rentMinimum",width: 180},
-    {field: "rentMaximum",headerName: "rentMaximum",width: 180},
-    {field: "gender",headerName: "gender",width: 180},
-    {field: "foodPreference",headerName: "foodPreference",width: 180},
-    {field: "degreeLevel",headerName: "degreeLevel",width: 180},
+    { field: "name", headerName: "Apt Name", width: 180 },
+    { field: "rentMinimum", headerName: "rentMinimum", width: 180 },
+    { field: "rentMaximum", headerName: "rentMaximum", width: 180 },
+    { field: "gender", headerName: "gender", width: 180 },
+    { field: "foodPreference", headerName: "foodPreference", width: 180 },
+    { field: "degreeLevel", headerName: "degreeLevel", width: 180 },
+    {
+      field: "chat", headerName: "Chat", width: 180, renderCell: (params) => {
+        return (
+          <>
+            {/* <Link to={'/chats/' + params.row.userId}> */}
+              <button className="btn btn-success" onClick= {() => openNewChat(params.row)} >Chat</button>
+            {/* </Link> */}
+          </>
+        )
+      }
+    }
   ];
 
 
   return (
-    
+
     <div className="userList">
       {blogs && <DataGrid
         rows={blogs}

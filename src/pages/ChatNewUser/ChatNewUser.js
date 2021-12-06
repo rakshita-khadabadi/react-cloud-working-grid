@@ -1,19 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import "./Chat.css";
+import "./ChatNewUser.css";
 import ChatBox from '../ChatBox/ChatBox';
+import { useLocation } from "react-router-dom";
 
-function Chat(props) {
+function ChatNewUser(props) {
 
+    const { newChatObj } = useLocation()
     const [chats, setChats] = useState([])
     const [userId, setUserId] = useState(props.userId)
     const [receiverChatBoxData, setReceiverChatBoxData] = useState([])
     const [showChatBox, setShowChatBox] = useState(false)
+    const [chatHistoryExists, setChatHistoryExists] = useState(false)
 
     useEffect(() => {
 
         const chatUrl = 'http://34.127.76.90:8080/chats/userId/' + userId
-        console.log('Calling Chat API -> ' + chatUrl)
+        console.log('Calling Chat API 2 -> ' + chatUrl)
 
         axios.get(chatUrl).then(res => {
             console.log(res)
@@ -24,9 +27,36 @@ function Chat(props) {
             else {
                 console.log('API call failed')
             }
-        })
+        });
 
     }, [])
+
+    useEffect(() => {
+        console.log(chats)
+        console.log(newChatObj)
+        
+        chats.forEach(receiver => {
+            if (receiver.receiverId === newChatObj.receiverId){
+                console.log('chat history already exists')
+                openChatBox(receiver)
+                setChatHistoryExists(true)
+            }
+        })
+
+        
+
+    }, [chats])
+
+    useEffect(() => {
+        console.log('chatHistoryExists = '+chatHistoryExists)
+
+        if (chatHistoryExists == false){
+            let newChats = chats.concat(newChatObj)
+            setChats(false)
+            setChats(newChats)
+        }
+
+    }, [chatHistoryExists])
 
     function openChatBox(receiver) {
 
@@ -71,4 +101,4 @@ function Chat(props) {
     )
 }
 
-export default Chat;
+export default ChatNewUser;
