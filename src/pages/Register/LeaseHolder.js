@@ -15,6 +15,7 @@ import Button from './FormsUI/Button';
 import { useHistory } from "react-router-dom"
 import furnishingStatus from '../../data/furnishingStatus.json';
 import Select from './FormsUI/Select';
+import './register.css';
 
 const useStyles = makeStyles((theme) => ({
   formWrapper: {
@@ -266,7 +267,7 @@ const LeaseHolderForm = () => {
                     </Button>
                   </Grid>
                   <Grid item xs={6}>
-                    <button  onClick = {cancelForm}>
+                    <button className="cancelbutton"  onClick = {cancelForm}>
                      Cancel
                     </button>
                   </Grid>

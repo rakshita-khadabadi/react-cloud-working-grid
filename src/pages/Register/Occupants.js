@@ -18,6 +18,8 @@ import food from '../../data/food.json';
 import gender from '../../data/gender.json';
 import degree from '../../data/degree.json';
 import { useHistory } from "react-router-dom"
+import './register.css';
+
 
 const useStyles = makeStyles((theme) => ({
   formWrapper: {
@@ -242,7 +244,7 @@ const RegistartionForm = () => {
                   </Grid>
 
                   <Grid item xs={6}>
-                    <button  onClick = {cancelForm}>
+                    <button className="cancelbutton"  onClick = {cancelForm}>
                      Cancel
                     </button>
                   </Grid>

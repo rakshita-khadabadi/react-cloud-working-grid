@@ -1,7 +1,6 @@
 import React from "react";
 import "./topbar.css";
-import  {Route, BrowserRouter as Router, Switch,NavLink,Link} from 'react-router-dom';
-import { Navbar, Nav,Container } from 'react-bootstrap';
+import  {Route, BrowserRouter as Router, Switch,Link} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from '../../pages/home/Home';
 import Dashboard from '../../Dashboard';
@@ -9,19 +8,7 @@ import FirstTimeRegister from '../../pages/Register/FirstTimeRegister';
 import LeaseHolderForm from '../../pages/Register/LeaseHolder';
 import Occupants from '../../pages/Register/Occupants';
 import Login from '../../pages/login/Login';
-
-// import RegistartionForm1 from './RegistrationForm1';
-// import RegistartionForm from './RegistrationForm';
-
-// import Home from './Home';
-// import About from './about';
-
-// import image from './images/roomates.jpg';
-// import Dashboard from './dashboard';
-// import NavbarDashboard from './NavbarDashboard';
-// import Login from './Login';
-
-
+import About from '../../pages/about/About';
 
 
 export default function Topbar() {
@@ -41,26 +28,15 @@ export default function Topbar() {
             <li class="nav-item active">
             <Link to="/home" class="nav-link"> Home </Link>
             </li>
-           
+            <li class="nav-item active">
+            <Link to="/about" class="nav-link"> About </Link>
+            </li>
             <li class="nav-item">
             <Link to="/register" class="nav-link"> Register </Link>
             </li>
             <li class="nav-item">
             <Link to="/login" class="nav-link"> Login </Link>
             </li>
-            {/*<li class="nav-item">
-            <Link to="/navbardashboard" class="nav-link"> Nav Bar Dashboard </Link>
-            </li>
-            <li class="nav-item">
-            <Link to="/login" class="nav-link"> Login </Link>
-            </li>
-            <li class="nav-item">
-            <Link to="/registerfirsttime" class="nav-link"> Registerfirsttime </Link>
-            </li>
-            <li class="nav-item">
-            <Link to="/leaseholder" class="nav-link"> LeaseHolderForm </Link>
-            </li>
-           */}
           </ul>
         </div>
       </nav>
@@ -72,24 +48,12 @@ export default function Topbar() {
     <Route path = "/leaseholder"  > <LeaseHolderForm/> </Route>
     <Route path = "/occupant"  > <Occupants/> </Route>
     <Route path = "/login"  > <Login/> </Route>
-    {/* <Route path = "/about" component ={About} > <About/> </Route>
+    <Route path = "/about"  > <About/> </Route>
     
-    
-    <Route path = "/navbardashboard"  > <NavbarDashboard/> </Route>
-    <Route path = "/login"  > <Login/> </Route>
-    
-    <Route path = "/registerfirsttime"  component={Registerfirsttime}> <Registerfirsttime/> </Route> */}
-    
-    
-
-
-
-
-      </div>
+    </div>
       </Switch>
     </Router>
-       
-      </div>
+    </div>
     </div>
   );
 }

@@ -7,7 +7,7 @@ import {
   Storefront,
   AttachMoney,
   BarChart,
-  MailOutline
+  MailOutline,
 } from "@material-ui/icons";
 import { Link } from "react-router-dom";
 
