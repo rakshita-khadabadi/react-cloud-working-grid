@@ -1,26 +1,32 @@
-# Run npm install to install all dependencies
+# TO RUN ANYWHERE
 
-npm install
-
-# To start the React app in your local
-
-npm start
-
-# To run the app as a docker container run the below commands
-
-## this is a script written by us to automate running the app as a docker container locally
-chmod +x /runImage.sh   
-./runImage.sh
-
-# We have the docker image on docker hub
+## We have the docker image on docker hub
 
 amlanalok/cse-5333-react-final​
 
-# Run the below command to run our docker image
+## Run the below command to run our docker image
 
 docker run -dp 3000:3000 amlanalok/cse-5333-react-final​
 
-## This is already integrated with the backend apps
+### This is already integrated with the backend apps
+
+# TO RUN LOCALLY
+
+## Run npm install to install all dependencies
+
+npm install
+
+## To start the React app in your local
+
+npm start
+
+## To run the app as a docker container run the below commands
+
+### this is a script written by us to automate running the app as a docker container locally
+chmod +x /runImage.sh   
+./runImage.sh
+
+
 
 <!-- # Getting Started with Create React App
 
